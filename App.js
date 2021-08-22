@@ -1,5 +1,5 @@
-import React from 'react';
-import {Text, View, StyleSheet,Button,Alert,TouchableOpacity,Image, ImageBackground} from 'react-native';
+import React,{useState} from 'react';
+import {Text, View, StyleSheet,Button,Alert,TouchableOpacity,Image,ImageBackground,TextInput} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -27,13 +27,29 @@ function TelaLogin({navigation}){
   return(
     <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
           <Text style={styles.entrar}>Entrar</Text>
-          <TouchableOpacity style={styles.botao2}>
+          <Text style={styles.textoTelaLogin}>Email</Text>
+          <TextInput style={styles.caixaTexto}>
+             
+          </TextInput>
+          <Text style={styles.textoTelaLogin}>Senha</Text>
+          <TextInput style={styles.caixaTexto}>
+             
+          </TextInput>
+          <TouchableOpacity style={styles.botao2} onPress={()=>navigation.navigate('Meu Aluno')}>
              <Text style={styles.botaoEntrar} > Entrar </Text>
           </TouchableOpacity>
              
           
     </View>
   );
+}
+  function TelaMeuAluno({navigation}){
+    return(
+      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+            <Text>Meu aluno</Text>
+               
+      </View>
+    );
 }
 
 export default function App(){
@@ -49,6 +65,11 @@ export default function App(){
                 name='Login'
                 component={TelaLogin}
                 options={{title:'Login'}}
+             />
+             <Pilha.Screen
+                name='Meu Aluno'
+                component={TelaMeuAluno}
+                options={{title:'Meu Aluno'}}
              />
            </Pilha.Navigator>
         </NavigationContainer>
@@ -92,7 +113,7 @@ const styles = StyleSheet.create({
   botao2:{
     justifyContent: 'center',
     alignItems:'center',
-    margin: 15,
+    marginTop: 25,
     backgroundColor: '#6495ed',
     padding: 10,
     borderRadius: 20,
@@ -104,4 +125,16 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#FFF',
   },
+  textoTelaLogin:{
+    fontSize: 20,
+    color: '#000000',
+    marginTop: 15
+  },
+  caixaTexto:{
+    borderWidth:1,
+    borderColor:'#000',
+    width: '60%',
+    marginEnd: 15
+  }
+
 });
