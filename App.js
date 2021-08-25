@@ -1,9 +1,24 @@
 import React,{useState} from 'react';
-import {Text, View, StyleSheet,Button,Alert,TouchableOpacity,Image,ImageBackground,TextInput} from 'react-native';
+import {Text, View, StyleSheet,Button,ScrollView,TouchableOpacity,FlatList,ImageBackground,TextInput,TouchableHighlight} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Pilha=createStackNavigator();
+
+const lembretes=[
+    {
+        id:'001',
+        desc:['Terça','14:00']
+    },
+    {
+       id:'00',
+       desc:['Quarta','16:00']
+    },
+    {
+       id:'003',
+       desc:['Quinta','19:00']
+    },
+]
 
 function TelaInicial({navigation}){
   return(
@@ -45,13 +60,169 @@ function TelaLogin({navigation}){
 }
   function TelaMeuAluno({navigation}){
     return(
-      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Text>Meu aluno</Text>
-               
+      <View>
+        <ScrollView>
+          <View style={styles.container2}>
+              <TouchableHighlight style={styles.botaoMeuAluno} onPress={()=>navigation.navigate('Lembretes')}>
+                  <Text style={styles.textoMeuAluno}>Mural de lembretes</Text>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.botaoMeuAluno} onPress={()=>navigation.navigate('HorarioAulas')}>
+                  <Text style={styles.textoMeuAluno}>Horários de Aulas</Text>
+              </TouchableHighlight>    
+          </View>
+
+          <View style={styles.container2}>
+              <TouchableHighlight style={styles.botaoMeuAluno} onPress={()=>navigation.navigate('Atividades')}>
+                  <Text style={styles.textoMeuAluno}>Atividades</Text>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.botaoMeuAluno} onPress={()=>navigation.navigate('Relatorio Academico')}>
+                  <Text style={styles.textoMeuAluno}>Relatório Academico</Text>
+              </TouchableHighlight>    
+          </View>
+
+          <View style={styles.container2}>
+              <TouchableHighlight style={styles.botaoMeuAluno} onPress={()=>navigation.navigate('Horarios Monitoria')}>
+                  <Text style={styles.textoMeuAluno}>Horários de Monitoria</Text>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.botaoMeuAluno} onPress={()=>navigation.navigate('Biblioteca')}>
+                  <Text style={styles.textoMeuAluno}>Biblioteca Virtual</Text>
+              </TouchableHighlight>    
+          </View>
+
+          <View style={styles.container2}>
+              <TouchableHighlight style={styles.botaoMeuAluno} onPress={()=>navigation.navigate('Pessoas cursinho')}>
+                  <Text style={styles.textoMeuAluno}>Pessoas do Cursinho</Text>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.botaoMeuAluno} onPress={()=>navigation.navigate('Feedback')}>
+                  <Text style={styles.textoMeuAluno}>Enviar Feedback</Text>
+              </TouchableHighlight>    
+          </View>
+
+          <View style={styles.container2}>
+              <TouchableHighlight style={styles.botaoMeuAluno} onPress={()=>navigation.navigate('Marcar Monitorias')}>
+                  <Text style={styles.textoMeuAluno}>Marcar Monitorias</Text>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.botaoMeuAluno} onPress={()=>navigation.navigate('Editar Perfil')}>
+                  <Text style={styles.textoMeuAluno}>Editar Perfil</Text>
+              </TouchableHighlight>    
+          </View>
+        
+        </ScrollView>
+      
+    
       </View>
     );
-}
+  }
+    function TelaLembretes({navigation}){
+      return(
+        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+              <Text style={styles.tela}>Mural</Text>
+              <FlatList
+                     data={lembretes}
+                     keyExtractor={item=>item.id}
+                     renderItem={({item})=><View><Text style={styles.item}>{item.desc[0]} - {item.desc[1]}</Text></View>}
 
+              />
+                 
+              
+        </View>
+      );
+}
+      function TelaHorarioAulas({navigation}){
+        return(
+          <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                <Text style={styles.tela}>Horário de Aulas</Text>
+                <FlatList
+                       data={lembretes}
+                       keyExtractor={item=>item.id}
+                       renderItem={({item})=><View><Text style={styles.item}>{item.desc[0]} - {item.desc[1]}</Text></View>}
+  
+                />
+                   
+                
+          </View>
+        );
+}
+function TelaAtividades({navigation}){
+  return(
+    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+          <Text style={styles.tela}>Atividades</Text>
+          
+             
+          
+    </View>
+  );
+}
+function TelaRelatorioAcademico({navigation}){
+  return(
+    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+          <Text style={styles.tela}>Relatório Academico</Text>
+          
+             
+          
+    </View>
+  );
+}
+function TelaHorariosMonitoria({navigation}){
+  return(
+    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+          <Text style={styles.tela}>Horarios de Monitoria</Text>
+          
+             
+          
+    </View>
+  );
+}
+function TelaBiblioteca({navigation}){
+  return(
+    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+          <Text style={styles.tela}>Biblioteca</Text>
+          
+             
+          
+    </View>
+  );
+}
+function TelaPessoasCursinho({navigation}){
+  return(
+    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+          <Text style={styles.tela}>Pessoas do Cursinho</Text>
+          
+          
+          
+    </View>
+  );
+}
+function TelaFeedback({navigation}){
+  return(
+    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+          <Text style={styles.tela}>Feedback</Text>
+          
+          
+          
+    </View>
+  );
+}
+function TelaMarcarMonitorias({navigation}){
+  return(
+    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+          <Text style={styles.tela}>Marcar Monitorias</Text>
+          
+          
+          
+    </View>
+  );
+}
+function TelaEditarPerfil({navigation}){
+  return(
+    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+          <Text style={styles.tela}>Editar Perfil</Text>
+          
+          
+          
+    </View>
+  );
+}
 export default function App(){
   return(
         <NavigationContainer>
@@ -71,11 +242,60 @@ export default function App(){
                 component={TelaMeuAluno}
                 options={{title:'Meu Aluno'}}
              />
-           </Pilha.Navigator>
+             <Pilha.Screen
+                name='Lembretes'
+                component={TelaLembretes}
+                options={{title:'Lembretes'}}
+             />
+             <Pilha.Screen
+                name='HorarioAulas'
+                component={TelaHorarioAulas}
+                options={{title:'HorarioAulas'}}
+             />
+             <Pilha.Screen
+                name='Atividades'
+                component={TelaAtividades}
+                options={{title:'Atividades'}}
+             />
+             <Pilha.Screen
+                name='Relatorio Academico'
+                component={TelaRelatorioAcademico}
+                options={{title:'Relatorio Academico'}}
+             />
+           <Pilha.Screen
+                name='Horarios Monitoria'
+                component={TelaHorariosMonitoria}
+                options={{title:'Horarios Monitoria'}}
+             />
+             <Pilha.Screen
+                name='Biblioteca'
+                component={TelaBiblioteca}
+                options={{title:'Biblioteca'}}
+             />
+             <Pilha.Screen
+                name='Pessoas cursinho'
+                component={TelaPessoasCursinho}
+                options={{title:'Pessoas cursinho'}}
+             />
+             <Pilha.Screen
+                name='Feedback'
+                component={TelaFeedback}
+                options={{title:'Feedback'}}
+             />
+             <Pilha.Screen
+                name='Marcar Monitorias'
+                component={TelaMarcarMonitorias}
+                options={{title:'Marcar Monitorias'}}
+             />
+             <Pilha.Screen
+                name='Editar Perfil'
+                component={TelaEditarPerfil}
+                options={{title:'Editar Perfil'}}
+             />
+          </Pilha.Navigator>
         </NavigationContainer>
   );
-}
-
+}  
 const styles = StyleSheet.create({
   container:{
     justifyContent: 'center',
@@ -135,6 +355,31 @@ const styles = StyleSheet.create({
     borderColor:'#000',
     width: '60%',
     marginEnd: 15
-  }
-
+  },
+  container2:{
+     flexDirection:'row',
+     justifyContent:'space-between' 
+  },
+  botaoMeuAluno:{
+    justifyContent: 'center',
+    alignItems:'center',
+    marginHorizontal: 20,
+    marginVertical: 20,
+    backgroundColor: '#6495ed',
+    padding: 40,
+    borderRadius: 5,
+    width: '40%',
+    
+  },
+  textoMeuAluno:{
+    fontSize: 15,
+    color: '#FFF',
+  },
+  item:{
+    margin:10,
+  },
+  tela:{
+    margin: 20,
+    fontSize: 30,
+  },
 });
