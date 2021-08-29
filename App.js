@@ -147,7 +147,12 @@ function TelaAtividades({navigation}){
   return(
     <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
           <Text style={styles.tela}>Atividades</Text>
-          
+            <FlatList
+                       data={lembretes}
+                       keyExtractor={item=>item.id}
+                       renderItem={({item})=><View><Text style={styles.item}>{item.desc[0]} - {item.desc[1]}</Text></View>}
+  
+            />
              
           
     </View>
@@ -167,7 +172,12 @@ function TelaHorariosMonitoria({navigation}){
   return(
     <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
           <Text style={styles.tela}>Horarios de Monitoria</Text>
-          
+             <FlatList
+                       data={lembretes}
+                       keyExtractor={item=>item.id}
+                       renderItem={({item})=><View><Text style={styles.item}>{item.desc[0]} - {item.desc[1]}</Text></View>}
+  
+             />
              
           
     </View>
@@ -187,7 +197,12 @@ function TelaPessoasCursinho({navigation}){
   return(
     <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
           <Text style={styles.tela}>Pessoas do Cursinho</Text>
-          
+              <FlatList
+                       data={lembretes}
+                       keyExtractor={item=>item.id}
+                       renderItem={({item})=><View><Text style={styles.item}>{item.desc[0]} - {item.desc[1]}</Text></View>}
+  
+             />
           
           
     </View>
