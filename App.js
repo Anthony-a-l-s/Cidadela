@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Text, View, StyleSheet,Button,ScrollView,TouchableOpacity,FlatList,ImageBackground,TextInput,TouchableHighlight} from 'react-native';
+import {Text, View, StyleSheet,Button,ScrollView,TouchableOpacity,FlatList,ImageBackground,TextInput,TouchableHighlight, Alert} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -194,9 +194,19 @@ function TelaPessoasCursinho({navigation}){
   );
 }
 function TelaFeedback({navigation}){
+      const [texto,setTexto]=useState("Deixe seu comentário")
   return(
     <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-          <Text style={styles.tela}>Feedback</Text>
+          
+          <TextInput
+             style={styles.caixaTextoFeedback}
+              multiline= {true}
+              placeholder='Deixe seu comentário'
+              onChangeText={text=>setTexto(text)}
+          />
+          <TouchableHighlight style={styles.botaoEnviar} onPress={()=>Alert.alert('Feedback enviado com suceso')}>
+                  <Text>Enviar feedback</Text>
+          </TouchableHighlight>
           
           
           
@@ -352,7 +362,7 @@ const styles = StyleSheet.create({
   },
   caixaTexto:{
     borderWidth:1,
-    borderColor:'#000',
+    borderColor:'gray',
     width: '60%',
     marginEnd: 15
   },
@@ -381,5 +391,26 @@ const styles = StyleSheet.create({
   tela:{
     margin: 20,
     fontSize: 30,
+  },
+  caixaTextoFeedback:{
+    height: '50%',
+    padding: 10,
+    borderColor:'gray',
+    width: '80%',
+    borderWidth:2,
+
+  },
+  botaoEnviar:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#6495ed',
+    margin: 10,
+    padding: 10,
+    borderRadius: 10,
+    width: '50%',
+  },
+  textoEnviar:
+  {
+    fontSize: 15,
   },
 });
