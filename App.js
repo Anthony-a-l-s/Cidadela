@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button, ScrollView, TouchableOpacity, FlatList, ImageBackground, TextInput, TouchableHighlight, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Provider as AuthProvider } from './src/context/AuthContext';
+import { AuthProvider } from './src/context/AuthContext';
+import api from './src/api/api';
 
 const Pilha = createStackNavigator();
 
@@ -191,6 +192,14 @@ function TelaHorarioAulas({ navigation }) {
   );
 }
 function TelaAtividades({ navigation }) {
+  const [ativs, setAtivs] = React.useState([]);
+
+  /*React.useEffect(() => {
+    api.get("/atividades").then((response) => {
+      setAtivs(response.data);
+    });
+  }, []);*/
+  
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text style={styles.tela}>Atividades</Text>
@@ -298,76 +307,78 @@ function TelaEditarPerfil({ navigation }) {
 
 const App = () => {
   return (
-
-    <NavigationContainer>
-      <Pilha.Navigator>
-        <Pilha.Screen
-          name='Início'
-          component={TelaInicial}
-          options={{ title: 'Tela Inicial' }}
-        />
-        <Pilha.Screen
-          name='Login'
-          component={TelaLogin}
-          options={{ title: 'Login' }}
-        />
-        <Pilha.Screen
-          name='Menu Aluno'
-          component={TelaMenuAluno}
-          options={{ title: 'Menu Aluno' }}
-        />
-        <Pilha.Screen
-          name='Lembretes'
-          component={TelaLembretes}
-          options={{ title: 'Lembretes' }}
-        />
-        <Pilha.Screen
-          name='HorarioAulas'
-          component={TelaHorarioAulas}
-          options={{ title: 'HorarioAulas' }}
-        />
-        <Pilha.Screen
-          name='Atividades'
-          component={TelaAtividades}
-          options={{ title: 'Atividades' }}
-        />
-        <Pilha.Screen
-          name='Relatorio Academico'
-          component={TelaRelatorioAcademico}
-          options={{ title: 'Relatorio Academico' }}
-        />
-        <Pilha.Screen
-          name='Horarios Monitoria'
-          component={TelaHorariosMonitoria}
-          options={{ title: 'Horarios Monitoria' }}
-        />
-        <Pilha.Screen
-          name='Biblioteca'
-          component={TelaBiblioteca}
-          options={{ title: 'Biblioteca' }}
-        />
-        <Pilha.Screen
-          name='Pessoas cursinho'
-          component={TelaPessoasCursinho}
-          options={{ title: 'Pessoas cursinho' }}
-        />
-        <Pilha.Screen
-          name='Feedback'
-          component={TelaFeedback}
-          options={{ title: 'Feedback' }}
-        />
-        <Pilha.Screen
-          name='Marcar Monitorias'
-          component={TelaMarcarMonitorias}
-          options={{ title: 'Marcar Monitorias' }}
-        />
-        <Pilha.Screen
-          name='Editar Perfil'
-          component={TelaEditarPerfil}
-          options={{ title: 'Editar Perfil' }}
-        />
-      </Pilha.Navigator>
-    </NavigationContainer>
+    
+    //<AuthProvider>
+      <NavigationContainer>
+        <Pilha.Navigator>
+          <Pilha.Screen
+            name='Início'
+            component={TelaInicial}
+            options={{ title: 'Tela Inicial' }}
+          />
+          <Pilha.Screen
+            name='Login'
+            component={TelaLogin}
+            options={{ title: 'Login' }}
+          />
+          <Pilha.Screen
+            name='Menu Aluno'
+            component={TelaMenuAluno}
+            options={{ title: 'Menu Aluno' }}
+          />
+          <Pilha.Screen
+            name='Lembretes'
+            component={TelaLembretes}
+            options={{ title: 'Lembretes' }}
+          />
+          <Pilha.Screen
+            name='HorarioAulas'
+            component={TelaHorarioAulas}
+            options={{ title: 'HorarioAulas' }}
+          />
+          <Pilha.Screen
+            name='Atividades'
+            component={TelaAtividades}
+            options={{ title: 'Atividades' }}
+          />
+          <Pilha.Screen
+            name='Relatorio Academico'
+            component={TelaRelatorioAcademico}
+            options={{ title: 'Relatorio Academico' }}
+          />
+          <Pilha.Screen
+            name='Horarios Monitoria'
+            component={TelaHorariosMonitoria}
+            options={{ title: 'Horarios Monitoria' }}
+          />
+          <Pilha.Screen
+            name='Biblioteca'
+            component={TelaBiblioteca}
+            options={{ title: 'Biblioteca' }}
+          />
+          <Pilha.Screen
+            name='Pessoas cursinho'
+            component={TelaPessoasCursinho}
+            options={{ title: 'Pessoas cursinho' }}
+          />
+          <Pilha.Screen
+            name='Feedback'
+            component={TelaFeedback}
+            options={{ title: 'Feedback' }}
+          />
+          <Pilha.Screen
+            name='Marcar Monitorias'
+            component={TelaMarcarMonitorias}
+            options={{ title: 'Marcar Monitorias' }}
+          />
+          <Pilha.Screen
+            name='Editar Perfil'
+            component={TelaEditarPerfil}
+            options={{ title: 'Editar Perfil' }}
+          />
+        </Pilha.Navigator>
+      </NavigationContainer>
+    //</AuthProvider>
   );
 };
 
@@ -399,7 +410,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: '80%',
   },
-  
+
   botaoTexto: {
     fontSize: 15,
   },
